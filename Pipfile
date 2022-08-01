@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+APScheduler = "==3.9.1"
 beautifulsoup4 = "==4.11.1"
 bs4 = "==0.0.1"
 click = "==8.1.3"
