@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from flask import Flask
 from random import choice, randrange
-from apscheduler.schedulers.background import BackgroundScheduler
 
 def parse_jokes():
     categories = [
@@ -46,13 +45,9 @@ def parse_jokes():
 
     return maxime, authors
 
-joke_displayed = ""
-
 def get_random_jokes():
-    global joke_displayed
-
     line_sep = 2 * "<br />" + "--------------------------------------------------------------" + 2 * "<br />"
-    ret_val = "Veniți de luați stropul vostru de înțelepciune pentru ziua de astăzi!" + "<br />"
+    ret_val = "Veniți de luați un strop de înțelepciune!" + "<br />"
 
     maxime, _ = parse_jokes()
     
@@ -71,18 +66,13 @@ def get_random_jokes():
         if author is not None:
             ret_val += "Autor: " + author + "<br />"
 
-    joke_displayed = ret_val
+    return ret_val
 
 app = Flask(__name__)
 
 @app.route('/')
 def update_jokes():
-    global joke_displayed
-    return joke_displayed
+    return get_random_jokes()
 
 if __name__ == '__main__':
-    sched = BackgroundScheduler(daemon=True)
-    sched.add_job(get_random_jokes, 'interval', minutes=60 * 24)
-    sched.start()
-    get_random_jokes()
     app.run()
