@@ -5,3 +5,7 @@
 # Romanian
 
 Întelepciune Romanească este o aplicație web minimalistică care afișează citate aleatoare din cartea "Noi vorbim, nu gândim" a lui Radu Paraschivescu.
+
+# Next steps:
+
+Alte cărți urmează a fi adăugate! :) 
